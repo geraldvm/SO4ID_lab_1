@@ -6,10 +6,6 @@ const app =express();
 const PORT = 1616; //Listen Port
 
 
-let spaces= [{
-    "id": 1,
-    "state": 23}
-]
 //Settings
 app.set('port', process.env.PORT || PORT);
 

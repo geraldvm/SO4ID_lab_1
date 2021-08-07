@@ -34,29 +34,3 @@ app.listen(app.get('port'), () => {
 });
 
 
-
-//In function get have a req:request and res: response
-app.get('/',function(req, res){
-    res.send('It´s a main page');
-    console.log('It´s a main page');
-});
-
-
-//In function get have a req:request and res: response
-app.get('/spaces',function(req, res){
-    res.send(getMeters().row);
-    console.log('Get meters');
-    sole.log(e);
-    
-});
-
-//Get Meters Function
-const getMeters = async () => {
-    try {
-        const res = await pool.query('select * from meter');
-        // console.log(res)
-        console.log(res.rows);
-    } catch (e) {
-        console.log(e);
-    }
-};

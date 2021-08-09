@@ -1,0 +1,23 @@
+[
+    {
+        "id_space": 1,
+        "time": "13:00",
+        "car_plate":"dss125"
+    },
+    {
+        "id_space": 2,
+        "time": "13:00",
+        "car_plate":"klo502"
+    },
+    {
+        "id_space": 3,
+        "time": "13:00",
+        "car_plate":"map146"
+    },
+    {
+        "id_space": 5,
+        "time": "13:00",
+        "car_plate":"126558"
+    }
+
+]

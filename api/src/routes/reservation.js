@@ -72,14 +72,14 @@ router.delete('/:id', (req, res) => {
             
         });
         res.status(200).json({Error: 'There was an error. This reservation not even exist'});
-    }res.status(200).json({Error: 'Plese insert an id on url'});
+    }res.status(200).json({Error: 'Please insert an id on url'});
 });
 
 router.all('/', (req, res) => {
-    res.status(504).json({Error: 'Plese try with another method'});
+    res.status(504).json({Error: 'Please try with another method'});
 });
 router.all('/*', (req, res) => {
-    res.status(504).json({Error: 'Plese try with another url'});
+    res.status(504).json({Error: 'Please try with another url'});
 });
 
 module.exports = router;

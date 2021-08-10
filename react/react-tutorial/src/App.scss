@@ -1,0 +1,162 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.margins{
+  margin: 5% 10% 5% 10%;
+}
+
+/* Color Theme Swatches in Hex */
+$Bikes-1-hex: #3C851B;
+$Bikes-2-hex: #7FC210;
+$Bikes-3-hex: #0E8F94;
+$Bikes-4-hex: #6FCCD6;
+$Bikes-5-hex: #175668;
+
+
+
+
+body {
+    background-color: #ededed;
+}
+
+.line {
+    background-color: $Bikes-2-hex;
+    height          : 5px;
+    width           : 100%;
+}
+
+.bike-nav {
+    background-color: $Bikes-5-hex;
+}
+
+.bike-table {
+    thead {
+        background-color: scale-color($Bikes-4-hex, $lightness: 10%);
+        color           : white;
+        text-align: center;
+    }
+
+    tbody{
+        text-align: center;
+    }
+
+    tfoot {
+        background-color: scale-color($Bikes-4-hex, $lightness: 30%);
+        color           : white;
+        text-align: center;
+    }
+}
+
+.btn-outline-primary {
+    border-color: $Bikes-2-hex !important;
+    color       : $Bikes-2-hex;
+
+    &:hover {
+        background-color: $Bikes-2-hex !important;
+        color           : white;
+    }
+
+}
+
+.dropdown-item {
+    &:hover {
+        background-color: white !important;
+        color           : black;
+    }
+}
+
+.dropdown-toggle {
+    background-color: white;
+    color           : $Bikes-2-hex;
+
+    &:visited {
+        background-color: $Bikes-2-hex !important;
+        color           : white;
+    }
+
+    &:hover {
+        background-color: $Bikes-2-hex !important;
+        color           : white;
+    }
+
+    &:focus {
+        background-color: $Bikes-2-hex !important;
+        color           : white;
+    }
+
+    &:active {
+        background-color: $Bikes-2-hex !important;
+        color           : white;
+    }
+}
+
+.btn-primary {
+    background-color: $Bikes-2-hex !important;
+    border-color    : transparent;
+
+    &:hover {
+        background-color: scale-color($Bikes-2-hex, $lightness: -15%) !important;
+        color           : white;
+        border-color    : transparent;
+    }
+}
+
+.btn-icon {
+    background-color: transparent;
+    border          : transparent;
+}
+
+/* this is for clicked or active tabs */
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    background-color: scale-color($Bikes-4-hex, $lightness: -5%);
+    color      : $Bikes-3-hex;
+    font-size  : 15px;
+    font-weight: bold;
+}
+
+/* this is for normal tabs */
+.nav-tabs .nav-link {
+    //background-color: white;
+    background-color: scale-color($Bikes-4-hex, $lightness: 45%);
+    color           : $Bikes-3-hex;
+    font-size       : 15px;
+    font-weight     : bold;
+}
+

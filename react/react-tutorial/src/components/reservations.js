@@ -3,14 +3,7 @@ import { useEffect, useState } from "react";
 
 
 export function Reservations() {
-    /*const [initialState, setInitialState] = useState([]);
-    useEffect(() => {
-        fetch('/reservations/test').then(res => {
-            if (res.ok) {
-                return JSON.parse(JSON.stringify(res));
-            }
-        }).then(jsonResponse => console.log(jsonResponse))
-    }, [])*/
+    /*--- Código mágico que consulta el API ;D ----*/
 
     useEffect(() => {
         fetchItems();
@@ -23,7 +16,7 @@ export function Reservations() {
         const items = await data.json();
         setItems(items);
     };
-
+    /*-----------------------------------------*/
     return (
         <div className=" d-flex justify-content-center">
             <aside className="col-lg margins" >

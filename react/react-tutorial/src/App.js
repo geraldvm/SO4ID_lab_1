@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import React from 'react';
 import { Reservations } from './components/reservations'
 import { Spaces } from './components/spaces'

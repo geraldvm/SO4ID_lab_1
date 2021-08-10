@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 export function Navigation(){
+    /*------------- JSX solo acepta className, no class como el HTML normal :( ------------------*/
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark top">
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navMainMenu" aria-controls="navMainMenu" aria-expanded="false" aria-label="Toggle navigation">

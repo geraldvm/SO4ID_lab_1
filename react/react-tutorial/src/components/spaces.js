@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import {IconContext} from "react-icons"
 import {BsFillSquareFill,BsFillXSquareFill} from "react-icons/bs"
+import { MdPlusOne } from "react-icons/md";
+import { Link } from "react-router-dom";
 export function Spaces() {
 
     
@@ -61,6 +63,7 @@ export function Spaces() {
                                             <th scope="col">Id</th>
                                             <th scope="col">Descripción</th>
                                             <th scope="col">Disponibilidad</th>
+                                            <th scope="col">Reservar</th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
@@ -83,6 +86,20 @@ export function Spaces() {
                                                             <BsFillXSquareFill />
                                                         </div>
                                                     </IconContext.Provider>
+                                                </th>
+                                            }
+                                            { (item.state==="free")? <th>
+                                            <Link to='/reservations'><button class="btn-icon"  variant="contained" color="secondary" ngbTooltip="Delete">
+                                                <IconContext.Provider value={{ style: {fontSize: '30px', color: "rgb(15, 58, 71)"}}}>
+                                                        <div>
+                                                        <MdPlusOne /> 
+                                                        </div>
+                                                    </IconContext.Provider>
+                                                    
+                                                
+                                            </button></Link>
+                                                </th>
+                                                :<th>
                                                 </th>
                                             }
 

@@ -1,8 +1,9 @@
 import './App.css';
 import React from 'react';
 import { Reservations } from './components/reservations'
+import { Spaces } from './components/spaces'
 import { Navigation } from './components/navigation';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 export class App extends React.Component {
   constructor() {
@@ -22,7 +23,10 @@ export class App extends React.Component {
       <BrowserRouter>
         <div className="App">
           <Navigation />
-          <Reservations />
+          <Switch>
+            <Route path="/reservations" exact component={Reservations} />
+            <Route path="/spaces" exact component={Spaces} />
+          </Switch>
         </div>
       </BrowserRouter>
     );

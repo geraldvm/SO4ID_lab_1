@@ -6,7 +6,7 @@ var reservations = require('../data/reservation.json');
 //var spaces = spaceModule.spaces;
 
 router.get('/', (req, res) => {
-    res.send(reservations);
+    res.json(reservations);
 });
 
 router.get('/test', (req, res) => {

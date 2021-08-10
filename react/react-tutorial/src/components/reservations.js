@@ -22,7 +22,6 @@ export function Reservations() {
             <aside className="col-lg margins" >
                 <div className="card">
                     <h4 className="card-header">Reservaciones</h4>
-                    <div className="line"></div>
                     <div className="card-body">
                         <div>
                             {items.map(item =>

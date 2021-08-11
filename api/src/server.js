@@ -11,10 +11,11 @@ const PORT = 1616; //Listen Port
 app.set('port', process.env.PORT || PORT);
 
 //middlewares
+app.use(cors()); //enable cors
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));//Soportar datos de forms
 app.use(express.json());//<Soportar JSON
-app.use(cors()); //enable cors
+
 //app.use(morgan('combined'));
 
 

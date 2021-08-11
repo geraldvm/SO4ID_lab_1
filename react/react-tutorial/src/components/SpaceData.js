@@ -34,8 +34,5 @@ class SpaceData extends React.Component {
       </form>
     );
   }
-
-
-
   
 }

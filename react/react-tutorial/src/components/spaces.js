@@ -15,13 +15,12 @@ export function Spaces() {
 
     const [items, setItems] = useState([]);
 
-    const fetchItems = async () => {
+    const fetchItems = async () => { 
         const data = await fetch('/spaces');
         const items = await data.json();
         setItems(items);
     };
     /*-----------------------------------------*/
-
 
     return (
         <div className=" d-flex justify-content-center">
@@ -89,7 +88,7 @@ export function Spaces() {
                                                 </th>
                                             }
                                             { (item.state==="free")? <th>
-                                            <Link to='/reservations'><button class="btn-icon"  variant="contained" color="secondary" ngbTooltip="Delete">
+                                            <Link to='/reservations'><button class="btn-icon"  variant="contained" color="secondary" >
                                                 <IconContext.Provider value={{ style: {fontSize: '30px', color: "rgb(15, 58, 71)"}}}>
                                                         <div>
                                                         <MdPlusOne /> 
@@ -105,7 +104,7 @@ export function Spaces() {
 
                                             
                                             <th scope="row">
-                                                <button class="btn-icon" placement="top" ngbTooltip="Delete">
+                                                <button class="btn-icon">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </button>
                                             </th>

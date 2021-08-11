@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import {IconContext} from "react-icons"
-import {BsFillSquareFill,BsFillXSquareFill} from "react-icons/bs"
+import { IconContext } from "react-icons"
+import { BsFillSquareFill, BsFillXSquareFill } from "react-icons/bs"
 import { MdPlusOne } from "react-icons/md";
 import { Link } from "react-router-dom";
 export function Spaces() {
 
-    
+
     /*--- Código mágico que consulta el API ;D ----*/
 
     useEffect(() => {
@@ -14,13 +14,41 @@ export function Spaces() {
     }, []);
 
     const [items, setItems] = useState([]);
+    const [description, setDescription] = useState([]);
 
-    const fetchItems = async () => { 
+    const fetchItems = async () => {
         const data = await fetch('/spaces');
         const items = await data.json();
         setItems(items);
     };
     /*-----------------------------------------*/
+    const postSpace = async () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                description: description
+            })
+        };
+        const data = await fetch('http://localhost:1616/spaces', requestOptions);
+        console.log(data)
+        fetchItems();
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        postSpace();
+    }
+
+    const deleteSpace = async (id, e) => {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        };
+        const data = await fetch('http://localhost:1616/spaces/' + id, requestOptions);
+        console.log(data)
+        fetchItems();
+    }
 
     return (
         <div className=" d-flex justify-content-center">
@@ -30,17 +58,16 @@ export function Spaces() {
                     <div className="card-body">
                         <div class="row">
                             <div class="col-md-4">
-
                                 <div class="card">
                                     <article class="card-body">
                                         <h4 class="card-title mb-4 mt-1">Agregar Espacios</h4>
                                         <hr></hr>
                                         <div class="row">
                                             <div class="col">
-                                                <form>
+                                                <form onSubmit={handleSubmit}>
                                                     <div class="form-group">
                                                         <label>Descripción</label>
-                                                        <input class="form-control" type="text" />
+                                                        <input class="form-control" type="text" onChange={e => setDescription(e.target.value)} />
                                                     </div>
 
                                                     <div class="form-group">
@@ -68,48 +95,48 @@ export function Spaces() {
                                     </thead>
                                     <tbody>
                                         {items.map(item =>
-                                        <tr>
-                                            <td>{item.id}</td>
-                                            <th>{item.description}</th>
-                                            
-                                            { (item.state==="free")? <th>
-                                                    <IconContext.Provider value={{ style: {fontSize: '30px', color: "rgb(108, 165, 14)"}}}>
+                                            <tr>
+                                                <td>{item.id}</td>
+                                                <th>{item.description}</th>
+
+                                                {(item.state === "free") ? <th>
+                                                    <IconContext.Provider value={{ style: { fontSize: '30px', color: "rgb(108, 165, 14)" } }}>
                                                         <div>
                                                             <BsFillSquareFill />
                                                         </div>
                                                     </IconContext.Provider>
                                                 </th>
-                                                :<th>
-                                                    <IconContext.Provider value={{ style: {fontSize: '30px', color: "rgb(252, 3, 90)"}}}>
-                                                        <div>
-                                                            <BsFillXSquareFill />
-                                                        </div>
-                                                    </IconContext.Provider>
-                                                </th>
-                                            }
-                                            { (item.state==="free")? <th>
-                                            <Link to='/reservations'><button class="btn-icon"  variant="contained" color="secondary" >
-                                                <IconContext.Provider value={{ style: {fontSize: '30px', color: "rgb(15, 58, 71)"}}}>
-                                                        <div>
-                                                        <MdPlusOne /> 
-                                                        </div>
-                                                    </IconContext.Provider>
-                                                    
-                                                
-                                            </button></Link>
-                                                </th>
-                                                :<th>
-                                                </th>
-                                            }
+                                                    : <th>
+                                                        <IconContext.Provider value={{ style: { fontSize: '30px', color: "rgb(252, 3, 90)" } }}>
+                                                            <div>
+                                                                <BsFillXSquareFill />
+                                                            </div>
+                                                        </IconContext.Provider>
+                                                    </th>
+                                                }
+                                                {(item.state === "free") ? <th>
+                                                    <Link to='/reservations'><button class="btn-icon" variant="contained" color="secondary" >
+                                                        <IconContext.Provider value={{ style: { fontSize: '30px', color: "rgb(15, 58, 71)" } }}>
+                                                            <div>
+                                                                <MdPlusOne />
+                                                            </div>
+                                                        </IconContext.Provider>
 
-                                            
-                                            <th scope="row">
-                                                <button class="btn-icon">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </button>
-                                            </th>
-                                        </tr>
-                                         )}
+
+                                                    </button></Link>
+                                                </th>
+                                                    : <th>
+                                                    </th>
+                                                }
+
+
+                                                <th scope="row">
+                                                    <button class="btn-icon">
+                                                        <i class="fa fa-trash" aria-hidden="true" onClick={(e) => deleteSpace(item.id, e)}></i>
+                                                    </button>
+                                                </th>
+                                            </tr>
+                                        )}
 
                                     </tbody>
                                 </table>

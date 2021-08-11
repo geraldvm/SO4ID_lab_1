@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "state": "free",
+        "state": "in-use",
         "description":"empty"
     },
     {
@@ -11,11 +11,21 @@
     },
     {
         "id": 3,
-        "state": "free",
+        "state": "in-use",
         "description":"empty"
     },
     {
         "id": 4,
+        "state": "free",
+        "description":"empty"
+    },
+    {
+        "id": 5,
+        "state": "free",
+        "description":"empty"
+    },
+    {
+        "id": 6,
         "state": "free",
         "description":"empty"
     }

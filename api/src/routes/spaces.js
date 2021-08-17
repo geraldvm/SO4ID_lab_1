@@ -5,17 +5,70 @@ var spaces = require('../data/spaces.json');
 
 /**
  * @swagger
- * /spaces/:
+ * components:
+ *   schemas:
+ *     Space:
+ *       type: object
+ *       required:
+ *         - state
+ *         - id
+ *         - description
+ *       properties:
+ *         id:
+ *           type: number
+ *           description: Id del espacio
+ *         state:
+ *           type: string
+ *           description: Estado de reserva del espacio
+ *         description:
+ *           type: string
+ *           description: Descripción del campo
+ *       example:
+ *         id: 10
+ *         statee: free
+ *         description: Espacio de ley 7600
+ */
+
+/**
+ * @swagger
+ * /spaces:
  *  get:
- *    description: Solicitar todos los espacios
+ *    tags: [Spaces]
+ *    summary: Solicitar todos los espacios
  *    responses:
- *      '200':
- *        description: A successful response
+ *      200:
+ *        description: Una respuesta exitosa
  */
 router.get('/', (req, res) => {
     res.json(spaces);
 });
 
+
+/**
+ * @swagger
+ * /spaces/{id}:
+ *  put:
+ *    summary: Obtiene los datos de un espacio por id
+ *    tags: [Spaces]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: number
+ *        required: true
+ *        description: El id del espacio
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Spaces'
+ *    responses:
+ *      200:
+ *        description: Solicitud exitosa
+ *      405:
+ *        description: El campo no existe
+ */
 router.get('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     if (id ) {
@@ -37,7 +90,24 @@ router.get('/test', (req, res) => {
     res.json(js);
 });  
 
-
+/**
+ * @swagger
+ * /spaces/:
+ *   post:
+ *     summary: Crea un nuevo espacio
+ *     tags: [Spaces]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Spaces'
+ *     responses:
+ *       200:
+ *         description: El campo se creó exitosamente
+ *       405:
+ *         description: El espacio no se pudo crear
+ */
 router.post('/', (req, res) => {
     const id = spaces.length + 1;
     const description  = req.body;
@@ -51,7 +121,31 @@ router.post('/', (req, res) => {
     //console.log(data);
 });
 
-
+/**
+ * @swagger
+ * /spaces/{id}:
+ *  put:
+ *    summary: Actualizar una reservación
+ *    tags: [Spaces]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: number
+ *        required: true
+ *        description: El id del espacio
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Spaces'
+ *    responses:
+ *      200:
+ *        description: La actualización fue exitosa
+ *      405:
+ *        description: Ocurrió un error y no se pudo actualizar
+ */
 router.put('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const { description, state } = req.body;
@@ -69,7 +163,28 @@ router.put('/:id', (req, res) => {
 });
 
 
-
+/**
+ * @swagger
+ * /spaces/{id}:
+ *   delete:
+ *     summary: Eliminar una reservación por id del campo
+ *     tags: [Spaces]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: number
+ *         required: true
+ *         description:  El id del espacio
+ * 
+ *     responses:
+ *       200:
+ *         description: El espacio fue eliminado
+ *       404:
+ *         description: El espacio no existe
+ *       402:
+ *         description: Parámetros incompletos
+ */
 router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     if (id) {
@@ -80,8 +195,8 @@ router.delete('/:id', (req, res) => {
             }
             
         });
-        res.status(200).json({Error: 'There was an error. This space not exist'});
-    }res.status(200).json({Error: 'Please insert an id on url'});
+        res.status(404).json({Error: 'There was an error. This space not exist'});
+    }res.status(402).json({Error: 'Please insert an id on url'});
 });
 
 router.all('/', (req, res) => {

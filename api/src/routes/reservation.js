@@ -37,7 +37,7 @@ var reservations = require('../data/reservation.json');
  *    tags: [Reservations]
  *    summary: Solicitar todas las reservaciones
  *    responses:
- *      '200':
+ *      200:
  *        description: Una respuesta exitosa
  */
 router.get('/', (req, res) => {
@@ -95,7 +95,31 @@ router.post('/', (req, res) => {
     }
 });
 
-
+/**
+ * @swagger
+ * /reservations/{id}:
+ *  put:
+ *    summary: Actualizar una reservación
+ *    tags: [Reservations]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: number
+ *        required: true
+ *        description: El id del espacio
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/Reservation'
+ *    responses:
+ *      200:
+ *        description: La actualización fue exitosa
+ *      405:
+ *        description: Ocurrió un error y no se pudo actualizar
+ */
 router.put('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const { description, state } = req.body;
@@ -113,7 +137,28 @@ router.put('/:id', (req, res) => {
 });
 
 
-
+/**
+ * @swagger
+ * /reservations/{id}:
+ *   delete:
+ *     summary: Eliminar una reservación por id del campo
+ *     tags: [Reservations]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: number
+ *         required: true
+ *         description:  El id del espacio
+ * 
+ *     responses:
+ *       200:
+ *         description: La reservación fue eliminada
+ *       404:
+ *         description: La reservación no existe
+ *       402:
+ *         description: Parámetros incompletos
+ */
 router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     if (id) {
@@ -124,8 +169,8 @@ router.delete('/:id', (req, res) => {
             }
 
         });
-        res.status(200).json({ Error: 'There was an error. This reservation not even exist' });
-    } res.status(200).json({ Error: 'Please insert an id on url' });
+        res.status(404).json({ Error: 'There was an error. This reservation not even exist' });
+    } res.status(402).json({ Error: 'Please insert an id on url' });
 });
 
 router.all('/', (req, res) => {

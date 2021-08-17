@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "state": "free",
+        "state": "in-use",
         "description":"empty"
     },
     {
@@ -11,7 +11,7 @@
     },
     {
         "id": 3,
-        "state": "free",
+        "state": "in-use",
         "description":"empty"
     },
     {
@@ -26,26 +26,6 @@
     },
     {
         "id": 6,
-        "state": "free",
-        "description":"empty"
-    },
-    {
-        "id": 7,
-        "state": "in-use",
-        "description":"empty"
-    },
-    {
-        "id": 8,
-        "state": "in-use",
-        "description":"empty"
-    },
-    {
-        "id": 9,
-        "state": "free",
-        "description":"empty"
-    },
-    {
-        "id": 10,
         "state": "free",
         "description":"empty"
     }

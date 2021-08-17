@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
     const state = 'free';
     const newSpace = { ...req.body, id , state};
     spaces.push(newSpace);
-    res.status(200).send("Ok saved succesful!");
+    res.status(200).json({OK:'Saved succesful!'});
     /*} else {
         res.status(500).json({error: 'There was an error.'});
     }*/
@@ -53,7 +53,7 @@ router.put('/:id', (req, res) => {
                 space.state = state;
             }
         });
-        res.status(200).send("Ok saved succesful!");
+        res.status(200).json({OK:'Ok saved succesful!'});
     } else {
         res.status(405).json({error: 'There was an error.'});
     }

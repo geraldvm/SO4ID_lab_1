@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Clock from 'react-live-clock';
+
 
 export function Navigation() {
     /*------------- JSX solo acepta className, no class como el HTML normal :( ------------------*/
@@ -18,6 +20,7 @@ export function Navigation() {
                 </div>
             </nav>
             <div className="line"></div>
-        </div>
+        </div>   
     );
 }
+ 

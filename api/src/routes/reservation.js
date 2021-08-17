@@ -3,11 +3,47 @@ const router = new Router();
 //var spaceModule = require('./spaces');
 var reservations = require('../data/reservation.json');
 
-//var spaces = spaceModule.spaces;
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Reservation:
+ *       type: object
+ *       required:
+ *         - time
+ *         - id_Space
+ *         - car_plate
+ *         - time
+ *       properties:
+ *         id_space:
+ *           type: number
+ *           description: Id del espacio a reservar
+ *         time:
+ *           type: string
+ *           description: Hora de la reserva
+ *         car_plate:
+ *           type: string
+ *           description: Placa del vehiculo que va a usar el espacio
+ *       example:
+ *         id_space: 1
+ *         car_plate: d5fE_asz
+ *         time: 1:00
+ */
 
+/**
+ * @swagger
+ * /reservations:
+ *  get:
+ *    tags: [Reservations]
+ *    summary: Solicitar todas las reservaciones
+ *    responses:
+ *      '200':
+ *        description: Una respuesta exitosa
+ */
 router.get('/', (req, res) => {
-    res.json(reservations);
+    res.status(200).json(reservations);
 });
+
 
 router.get('/test', (req, res) => {
     const js = {
@@ -15,16 +51,33 @@ router.get('/test', (req, res) => {
         value: 'testing'
     };
     res.json(js);
-});  
+});
 
-
+/**
+ * @swagger
+ * /reservations/:
+ *   post:
+ *     summary: Crea una nueva reservación
+ *     tags: [Reservations]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Reservation'
+ *     responses:
+ *       200:
+ *         description: La reservación fue exitosa
+ *       405:
+ *         description: El espacio ya está reservado
+ */
 router.post('/', (req, res) => {
     const { car_plate, id_space, time } = req.body;
-    const newReservation = { ...req.body};
-    if (car_plate && id_space && time ) {
-        reservations.forEach( (reservation, i) => {
+    const newReservation = { ...req.body };
+    if (car_plate && id_space && time) {
+        reservations.forEach((reservation, i) => {
             if (reservation.id_space === id_space) {
-                res.status(405).json({error: 'There was an error. This space is reserved'});
+                res.status(405).json({ error: 'There was an error. This space is reserved' });
             }
         });
         /*spaces.forEach( (space, i) => {
@@ -35,10 +88,10 @@ router.post('/', (req, res) => {
         });
         res.status(405).json({error: 'There was an error in id space'});*/
         reservations.push(newReservation);
-        res.status(200).json({Ok: 'Space reserved'});
-        
+        res.status(200).json({ Ok: 'Space reserved' });
+
     } else {
-        res.status(405).json({error: 'Data incompleted!'});
+        res.status(405).json({ error: 'Data incompleted!' });
     }
 });
 
@@ -46,8 +99,8 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const { description, state } = req.body;
-    if (id && description && state ) {
-        reservations.forEach( (reservation, i) => {
+    if (id && description && state) {
+        reservations.forEach((reservation, i) => {
             if (reservation.id === id) {
                 reservation.description = description;
                 reservation.state = state;
@@ -55,7 +108,7 @@ router.put('/:id', (req, res) => {
         });
         res.status(200).send("Ok saved succesful!");
     } else {
-        res.status(405).json({error: 'There was an error.'});
+        res.status(405).json({ error: 'There was an error.' });
     }
 });
 
@@ -64,22 +117,22 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     if (id) {
-        reservations.forEach( (reservation, i) => { 
+        reservations.forEach((reservation, i) => {
             if (reservation.id_space == id) {
                 reservations.splice(i, 1);
-                res.status(200).json({Ok: 'Ok reservation deleted!'});
+                res.status(200).json({ Ok: 'Ok reservation deleted!' });
             }
-            
+
         });
-        res.status(200).json({Error: 'There was an error. This reservation not even exist'});
-    }res.status(200).json({Error: 'Please insert an id on url'});
+        res.status(200).json({ Error: 'There was an error. This reservation not even exist' });
+    } res.status(200).json({ Error: 'Please insert an id on url' });
 });
 
 router.all('/', (req, res) => {
-    res.status(504).json({Error: 'Please try with another method'});
+    res.status(504).json({ Error: 'Please try with another method' });
 });
 router.all('/*', (req, res) => {
-    res.status(504).json({Error: 'Please try with another url'});
+    res.status(504).json({ Error: 'Please try with another url' });
 });
 
 module.exports = router;

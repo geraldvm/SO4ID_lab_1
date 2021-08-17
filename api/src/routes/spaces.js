@@ -3,6 +3,15 @@ const router = new Router();
 
 var spaces = require('../data/spaces.json');
 
+/**
+ * @swagger
+ * /spaces/:
+ *  get:
+ *    description: Solicitar todos los espacios
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ */
 router.get('/', (req, res) => {
     res.json(spaces);
 });

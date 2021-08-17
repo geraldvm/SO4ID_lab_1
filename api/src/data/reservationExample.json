@@ -1,0 +1,19 @@
+{
+    "components": {
+        "schemas": {
+            "reservation": {
+                "properties": {
+                    "id_Space": {
+                        "type": "integer"
+                    },
+                    "car_plate": {
+                        "type": "integer"
+                    },
+                    "time":{
+                        "type":"integer"
+                    }
+                }
+            }
+        }
+    }
+}

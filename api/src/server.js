@@ -3,25 +3,46 @@
 const express = require('express'); //Uses express module
 const morgan = require('morgan');
 const cors = require('cors');  //https://medium.com/zero-equals-false/using-cors-in-express-cac7e29b005b
-const app =express();
+const app = express();
 const PORT = 1616; //Listen Port
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: "3.0.0",
+        info: {
+            version: "1.0.0",
+            title: "API parqueo",
+            description: "API para el manejo de reservas en el parqueo del TEC",
+            contact: {
+                name: "Karina Martínez",
+                name: "Gerald Valverde"
+            },
+            servers: ["http://localhost:1616"]
+        }
+    },
+    // ['.routes/*.js']
+    apis: ['./src/routes/*.js']
+};
 
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 //Settings
 app.set('port', process.env.PORT || PORT);
 
 //middlewares
 app.use(cors()); //enable cors
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false}));//Soportar datos de forms
+app.use(express.urlencoded({ extended: false }));//Soportar datos de forms
 app.use(express.json());//<Soportar JSON
 //app.use(morgan('combined'));
 
 
 // routes
 
-app.use('/spaces',require('./routes/spaces'));
-app.use('/reservations',require('./routes/reservation'));
+app.use('/spaces', require('./routes/spaces'));
+app.use('/reservations', require('./routes/reservation'));
 //app.use('/',require('./routes/default'));
 //app.use('/api/parking', require('./routes/parking'));//poner por defecto la entrada /api/parking
 app.use(require('./routes/default'));

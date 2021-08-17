@@ -77,10 +77,10 @@ export function Reservations() {
                     <h4 className="card-header">Reservaciones</h4>
                     <div className="row">
                         <div className="col-md-4">
-                            <div class="">
-                                <article class="card-body">
-                                    <div class="row">
-                                        <div class="col">
+                            <div className="">
+                                <article className="card-body">
+                                    <div className="row">
+                                        <div className="col">
                                             <form onSubmit={handleSubmit}>
                                                 <div className="form-group">
                                                     <label>Espacio</label>
@@ -92,16 +92,16 @@ export function Reservations() {
                                                         displayValue="id" // Property name to display in the dropdown options
                                                     />
                                                 </div>
-                                                <div class="form-group">
+                                                <div className="form-group">
                                                     <label>Hora</label>
-                                                    <input class="form-control" type="text" value={time} onChange={e => setTime(e.target.value)} />
+                                                    <input className="form-control" type="text" value={time} onChange={e => setTime(e.target.value)} />
                                                 </div>
-                                                <div class="form-group">
+                                                <div className="form-group">
                                                     <label>Placa</label>
-                                                    <input class="form-control" type="text" value={plate} onChange={e => setPlate(e.target.value)} />
+                                                    <input className="form-control" type="text" value={plate} onChange={e => setPlate(e.target.value)} />
                                                 </div>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-block">Reservar</button>
+                                                <div className="form-group">
+                                                    <button type="submit" className="btn btn-primary btn-block">Reservar</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -110,7 +110,7 @@ export function Reservations() {
                             </div>
                         </div>
                         <div className="col-md-8">
-                            <table class="table">
+                            <table className="table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Espacio</th>
@@ -126,8 +126,8 @@ export function Reservations() {
                                             <td>{item.time}</td>
                                             <td>{item.car_plate}</td>
                                             <th scope="row">
-                                                <button class="btn-icon">
-                                                    <i class="fa fa-trash" aria-hidden="true" onClick={(e) => deleteReservation(item.id_space, e)}></i>
+                                                <button className="btn-icon">
+                                                    <i className="fa fa-trash" aria-hidden="true" onClick={(e) => deleteReservation(item.id_space, e)}></i>
                                                 </button>
                                             </th>
                                         </tr>

@@ -7,6 +7,19 @@ router.get('/', (req, res) => {
     res.json(spaces);
 });
 
+router.get('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    if (id ) {
+        spaces.forEach( (space, i) => {
+            if (space.id === id) {
+                res.status(200).send(JSON.stringify({id: space.id, description: space.description, state:space.state}));
+            }
+        });
+    } else {
+        res.status(405).json({error: 'There was an error.'});
+    }
+});
+
 router.get('/test', (req, res) => {
     const js = {
         name: 'dev',

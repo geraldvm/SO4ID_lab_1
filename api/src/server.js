@@ -15,7 +15,6 @@ app.use(cors()); //enable cors
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));//Soportar datos de forms
 app.use(express.json());//<Soportar JSON
-
 //app.use(morgan('combined'));
 
 

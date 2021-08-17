@@ -56,22 +56,22 @@ export function Spaces() {
                 <div className="card">
                     <h4 className="card-header">Espacios</h4>
                     <div className="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <article class="card-body">
-                                        <h4 class="card-title mb-4 mt-1">Agregar Espacios</h4>
+                        <div className="row">
+                            <div className="col-md-4">
+                                <div className="card">
+                                    <article className="card-body">
+                                        <h4 className="card-title mb-4 mt-1">Agregar Espacios</h4>
                                         <hr></hr>
-                                        <div class="row">
-                                            <div class="col">
+                                        <div className="row">
+                                            <div className="col">
                                                 <form onSubmit={handleSubmit}>
-                                                    <div class="form-group">
+                                                    <div className="form-group">
                                                         <label>Descripción</label>
-                                                        <input class="form-control" type="text" onChange={e => setDescription(e.target.value)} />
+                                                        <input className="form-control" type="text" onChange={e => setDescription(e.target.value)} />
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary btn-block"> Agregar
+                                                    <div className="form-group">
+                                                        <button type="submit" className="btn btn-primary btn-block"> Agregar
                                                         </button>
                                                     </div>
                                                 </form>
@@ -82,8 +82,8 @@ export function Spaces() {
 
 
                             </div>
-                            <div class="col-md-8">
-                                <table class="table">
+                            <div className="col-md-8">
+                                <table className="table">
                                     <thead>
                                         <tr>
                                             <th scope="col">Id</th>
@@ -115,7 +115,7 @@ export function Spaces() {
                                                     </th>
                                                 }
                                                 {(item.state === "free") ? <th>
-                                                    <Link to='/reservations'><button class="btn-icon" variant="contained" color="secondary" >
+                                                    <Link to='/reservations'><button className="btn-icon" variant="contained" color="secondary" >
                                                         <IconContext.Provider value={{ style: { fontSize: '30px', color: "rgb(15, 58, 71)" } }}>
                                                             <div>
                                                                 <MdPlusOne />
@@ -131,8 +131,8 @@ export function Spaces() {
 
 
                                                 <th scope="row">
-                                                    <button class="btn-icon">
-                                                        <i class="fa fa-trash" aria-hidden="true" onClick={(e) => deleteSpace(item.id, e)}></i>
+                                                    <button className="btn-icon">
+                                                        <i className="fa fa-trash" aria-hidden="true" onClick={(e) => deleteSpace(item.id, e)}></i>
                                                     </button>
                                                 </th>
                                             </tr>

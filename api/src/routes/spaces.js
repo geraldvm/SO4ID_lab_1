@@ -29,6 +29,67 @@ var spaces = require('../data/spaces.json');
  *         description: Espacio de ley 7600
  */
 
+
+/**
+ * @swagger
+ * /spaces:
+ *  get:
+ *    tags: [Spaces]
+ *    summary: Solicitar los espacios por paginacion se busca la pagina page de tamaño size
+ *    responses:
+ *      200:
+ *        description: Una respuesta exitosa
+ */
+ router.get('/p/', (req, res) => {
+    const page = parseInt(req.query.page);
+    const size = parseInt(req.query.size);
+    const index = page*size;
+    if (page==0){
+        console.log('page0')
+        res.json(spaces.slice(index,index+size));
+    }else{
+        res.json(spaces.slice(index,index+size+1));
+    }
+});
+
+/**
+ * @swagger
+ * /spaces:
+ *  get:
+ *    tags: [Spaces]
+ *    summary: Solicitar los espacios por paginacion y filtro de estado
+ *    responses:
+ *      200:
+ *        description: Una respuesta exitosa
+ */
+ router.get('/fp/', (req, res) => {
+    const page = parseInt(req.query.page);
+    const size = parseInt(req.query.size);
+    const filter = req.query.filter;
+    const index = page*size;
+    const temp = spaces.filter(space => space.state==filter)
+    if (page==0){
+        res.json(temp.slice(index,index+size));
+    }else{
+        res.json(temp.slice(index,index+size+1));
+    }
+});
+
+/**
+ * @swagger
+ * /spaces:
+ *  get:
+ *    tags: [Spaces]
+ *    summary: Solicitar solo los espacios con el estado del filtro
+ *    responses:
+ *      200:
+ *        description: Una respuesta exitosa
+ */
+ router.get('/f/', (req, res) => {
+    const filter = req.query.filter;
+    res.json(spaces.filter(space => space.state==filter));
+});
+
 /**
  * @swagger
  * /spaces:
@@ -42,6 +103,7 @@ var spaces = require('../data/spaces.json');
 router.get('/', (req, res) => {
     res.json(spaces);
 });
+
 
 
 /**
